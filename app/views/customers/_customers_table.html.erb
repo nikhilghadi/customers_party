@@ -1,0 +1,21 @@
+<% if customers.present? %>
+  <h3>Customers whithin <%=distance%>km</h3>
+  <table border="1" cellpadding="5">
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% customers.each do |customer| %>
+        <tr>
+          <td><%= customer.user_id %></td>
+          <td><%= customer.name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No customers found.</p>
+<% end %>

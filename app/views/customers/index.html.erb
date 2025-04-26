@@ -1,0 +1,6 @@
+
+<%= render partial: "form" %>
+
+<%= turbo_frame_tag "customers_table" do %>
+  <%= render partial: "customers_table", locals: { customers: @customers } %>
+<% end %>

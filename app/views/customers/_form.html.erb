@@ -1,0 +1,21 @@
+<h2>Upload Customer File </h2>
+
+<%= form_with url: "/customers/upload", local: true, html: { multipart: true } do |form| %>
+  <div>
+    <%= form.label :file, "Choose customers.txt file" %><br>
+    <%= form.file_field :file,accept: ".txt", required: true %>
+  </div>
+
+  <br>
+
+
+  <div>
+    <%= form.label :distance, "Invite Distance (in km)" %><br>
+    <%= form.number_field :distance, value: INVITE_DISTANCE_KM, min: 1 %>
+    <p>Default <%=INVITE_DISTANCE_KM%>km</p>
+  </div>
+
+  <br>
+
+  <%= form.submit "Upload" %>
+<% end %>
