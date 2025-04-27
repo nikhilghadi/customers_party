@@ -63,3 +63,6 @@ group :test do
   gem "selenium-webdriver"
   gem 'rspec-rails'
 end
+gem 'rswag'
+gem 'rswag-api'
+gem 'rswag-ui'

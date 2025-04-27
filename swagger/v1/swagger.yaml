@@ -1,0 +1,78 @@
+---
+
+openapi: 3.0.1
+info:
+  title: Customers Invitaion API
+  version: 1.0.0
+  description: |
+    API to upload a customers.txt file, filter customers within a specified distance (default 100km) 
+    of Mumbai office, and return sorted list by user_id.
+
+servers:
+  - url: http://localhost:3000
+
+paths:
+  /customers/upload:
+    post:
+      summary: Upload Customers File
+      description: Upload a `.txt` file containing customer JSON lines. Filters customers based on distance from Mumbai office.
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - file
+              properties:
+                file:
+                  type: string
+                  format: binary
+                  description: Text file containing customer records in JSON lines format.
+                distance:
+                  type: integer
+                  default: 100
+                  description: Distance in kilometers (optional, default is 100km).
+      responses:
+        '200':
+          description: List of customers within the distance, sorted by user_id ascending.
+          content:
+            text/html:
+              example: |
+                Customers within 100km
+                  User ID	Name
+                  25	Pratik
+                  32	Manish
+
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    user_id:
+                      type: integer
+                      example: 1
+                    name:
+                      type: string
+                      example: "John Doe"
+        '400':
+          description: Bad request (missing file, wrong format, or size too large).
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "File size exceeds the maximum limit (3MB)."
+        '422':
+          description: Validation failed.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Please upload a valid .txt file."
