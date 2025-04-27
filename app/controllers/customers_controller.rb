@@ -12,7 +12,12 @@ class CustomersController < ApplicationController
     distance = (params[:distance].to_i)
     distance = distance == 0 ? INVITE_DISTANCE_KM : distance
     # giving ability to add distance to the user if user dont add the distance the consider 100 km as a default value
-    @customers = FileProcessor.new(@file).filter_nearby_customers(distance).sort_by{|customer| customer.user_id}
+   
+   
+    file_processor = FileProcessor.new(@file)
+    all_customers = file_processor.parse_customers
+
+    @customers = CustomerFilter.new(all_customers, distance).filter.sort_by(&:user_id)
 
     respond_to do |format|
       format.turbo_stream {

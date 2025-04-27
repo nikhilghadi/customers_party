@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
           "error_frme", 
           partial: "shared/error_message",
           locals: { message: message }
-        )
+        ),  status: :unprocessable_entity
       }
       format.json { render json: { error: message }, status: :unprocessable_entity }
     end

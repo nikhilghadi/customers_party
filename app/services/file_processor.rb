@@ -4,8 +4,8 @@ class FileProcessor
     @file = file.read
   end
 
-  # parse txt file and filter customers according to distance from office
-  def filter_nearby_customers(invite_distance = INVITE_DISTANCE_KM)
+  # parse txt file and create Customer objects
+  def parse_customers(invite_distance = INVITE_DISTANCE_KM)
     customers = []
         
     @file.each_line do |line|
@@ -18,11 +18,11 @@ class FileProcessor
           user_id: user_id,
           name: name
         )
-        # calcuating distance from office latitude and lingitude
-        distance = customer.distance_from()
-        if distance <= invite_distance
+        # # calcuating distance from office latitude and lingitude
+        # distance = customer.distance_from()
+        # if distance <= invite_distance
           customers << customer
-        end
+        # end
       end
     end
     customers
