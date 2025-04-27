@@ -1,4 +1,5 @@
 class CustomersController < ApplicationController
+  protect_from_forgery with: :exception
   skip_before_action :verify_authenticity_token, only: [:upload]
   before_action :validate_file, only: [:upload]
 
@@ -32,7 +33,7 @@ class CustomersController < ApplicationController
   # validating uploaded file
   def validate_file
     @file = params[:file]
-    
+     p "FILEEv#{@file}"
     unless @file&.respond_to?(:read)
       return render_error("Please upload a file")
     end

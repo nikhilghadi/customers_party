@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.describe DistanceCalculator do
+RSpec.describe DistanceCalculator do
   let(:office_latitude){SOURCE_LATITUDE}
   let(:office_longitude){SOURCE_LONGITUDE}
 
@@ -9,7 +9,7 @@ Rspec.describe DistanceCalculator do
   it "should return zero distance from source to source" do
     customer = Customer.new(user_id:1, name: 'Nikhil', latitude: SOURCE_LATITUDE, longitude: SOURCE_LONGITUDE)
     distance = customer.distance_from()
-    expect(distance).to eq(100)
+    expect(distance).to eq(0)
   end
 
   it "calculate distance from specific point" do

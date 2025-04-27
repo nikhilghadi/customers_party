@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-Rspec.describe CustomerFilter do
+RSpec.describe CustomerFilter do
 
   it "should return zero customers" do
     all_customers = [

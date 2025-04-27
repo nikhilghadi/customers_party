@@ -1,0 +1,12 @@
+version: '1.0'
+
+services:
+  app:
+    build: .
+    container_name: customers_party_app
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+    environment:
+      RAILS_ENV: development
