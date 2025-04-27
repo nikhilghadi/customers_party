@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
    
     # We can also rate limit this API so someone cant overload our server.
 
-    
+
     file_processor = FileProcessor.new(@file)
     all_customers = file_processor.parse_customers
 
@@ -37,7 +37,6 @@ class CustomersController < ApplicationController
   # validating uploaded file
   def validate_file
     @file = params[:file]
-     p "FILEEv#{@file}"
     unless @file&.respond_to?(:read)
       return render_error("Please upload a file")
     end
